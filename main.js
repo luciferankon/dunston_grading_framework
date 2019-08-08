@@ -1,11 +1,11 @@
-const Detector = require("./Detector");
+const Detector = require("./src/Detector");
 const detector = new Detector();
 
 const Machine = require("@craftybones/assembly_simulator");
 const machine = new Machine();
 
-const Modifier = require("./Multiplication_modifier");
-const Grader = require('./Grader');
+const Modifier = require("./src/Multiplication_modifier");
+const Grader = require('./src/Grader');
 
 let program = [
     "10 START",
@@ -24,9 +24,9 @@ let program = [
 
 detector.captureChanges(machine, program);
 const changes = detector.getChanges();
-const modifier = new Modifier(program, changes, [3, 2]);
+const modifier = new Modifier();
 
-program = modifier.modify();
+program = modifier.modify(program, changes, [3, 2]);
 
 machine.load(program.join("\n"));
 machine.execute();

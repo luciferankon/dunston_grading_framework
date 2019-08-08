@@ -1,20 +1,19 @@
 class MultiplicationModifier {
-    constructor(program, changes, inputs) {
-        this.program = program;
-        this.firstTwoChanges = changes.slice(0, 2);
-        this.inputs = inputs;
+    constructor() {
         this.index = 0;
     }
 
-    modify() {
+    modify(program, changes, inputs) {
+        this.firstTwoChanges = changes.slice(0, 2);
+
         this.firstTwoChanges.forEach(change => {
             const lineIndex = change["lineNo"] / 10 - 1;
-            const value = this.inputs[this.index++];
+            const value = inputs[this.index++];
             const instruction = "mov " + change["register"] + "," + value;
             const updatedLine = change["lineNo"] + " " + instruction;
-            this.program[lineIndex] = updatedLine;
+            program[lineIndex] = updatedLine;
         });
-        return this.program;
+        return program;
     }
 }
 

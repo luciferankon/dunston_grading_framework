@@ -14,12 +14,12 @@ class Detector {
     validateStep(step) {
         Object.keys(this.registers).forEach(register => {
             if (this.hasChanged(register, step)) {
-                this.updateChanges(step, register);
+                this.updateChange(step, register);
             }
         });
     }
 
-    updateChanges(step, register) {
+    updateChange(step, register) {
         this.changes.push({
             lineNo: step.CL,
             register: register,

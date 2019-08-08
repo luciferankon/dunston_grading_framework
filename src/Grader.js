@@ -4,10 +4,11 @@ class Grader{
     }
 
     grade(actual, expected, numberOfLines, numberOfLinesExecuted){
-        if(actual == expected){
-            this.marks += 60;
+        if(actual != expected){
+            return this.marks;
         }
         
+        this.marks += 60;
         const executionRatio = Math.ceil(numberOfLinesExecuted/numberOfLines);
         switch(executionRatio){
             case 1:
@@ -17,7 +18,7 @@ class Grader{
             case 3:
                 this.marks+=25;
                 break;
-            case 3:
+            case 4:
                 this.marks+=10;
                 break;
         }
