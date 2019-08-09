@@ -18,7 +18,8 @@ describe("Detector Test", () => {
                 {
                     lineNo: "20",
                     register: "A",
-                    value: 1
+                    value: 1,
+                    instruction: '20 mov a,1',
                 }
             ];
             assert.deepEqual(actual, expected);
@@ -33,12 +34,14 @@ describe("Detector Test", () => {
                 {
                     lineNo: "20",
                     register: "A",
-                    value: 1
+                    value: 1,
+                    instruction: '20 mov a,1',
                 },
                 {
                     lineNo: "30",
                     register: "B",
-                    value: 2
+                    value: 2,
+                    instruction: '30 mov b,2',
                 }
             ];
             assert.deepEqual(actual, expected);
@@ -56,10 +59,10 @@ describe("Detector Test", () => {
                 GT: 0,
                 LT: 0,
                 CL: "20",
-                NL: " ",
+                NL: "30",
                 PRN: undefined,
                 SL: 3,
-                INST: "30 stop",
+                INST: "20 mov a,1",
                 STK: []
             };
             const register = "A";
@@ -70,7 +73,8 @@ describe("Detector Test", () => {
                 {
                     lineNo: "20",
                     register: "A",
-                    value: 1
+                    value: 1,
+                    instruction: '20 mov a,1'
                 }
             ];
             assert.deepEqual(actual, expected);
@@ -89,10 +93,10 @@ describe("Detector Test", () => {
                 GT: 0,
                 LT: 0,
                 CL: "20",
-                NL: " ",
+                NL: "30",
                 PRN: undefined,
                 SL: 3,
-                INST: "30 stop",
+                INST: "20 mov a,1",
                 STK: []
             };
 
@@ -102,7 +106,8 @@ describe("Detector Test", () => {
                 {
                     lineNo: "20",
                     register: "A",
-                    value: 1
+                    value: 1,
+                    instruction: '20 mov a,1'
                 }
             ];
             assert.deepEqual(actual, expected);
@@ -118,7 +123,7 @@ describe("Detector Test", () => {
                 NE: 0,
                 GT: 0,
                 LT: 0,
-                CL: "20",
+                CL: "30",
                 NL: " ",
                 PRN: undefined,
                 SL: 3,
@@ -145,10 +150,10 @@ describe("Detector Test", () => {
                 GT: 0,
                 LT: 0,
                 CL: "20",
-                NL: " ",
+                NL: "30",
                 PRN: undefined,
                 SL: 3,
-                INST: "30 stop",
+                INST: "20 mov a,1",
                 STK: []
             };
             const register = "A";
@@ -168,7 +173,7 @@ describe("Detector Test", () => {
                 NE: 0,
                 GT: 0,
                 LT: 0,
-                CL: "20",
+                CL: "30",
                 NL: " ",
                 PRN: undefined,
                 SL: 3,

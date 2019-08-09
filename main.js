@@ -5,7 +5,6 @@ const Machine = require("@craftybones/assembly_simulator");
 const machine = new Machine();
 
 const Modifier = require("./src/Multiplication_modifier");
-const Grader = require('./src/Grader');
 
 let program = [
     "10 START",
@@ -22,18 +21,31 @@ let program = [
     "120 STOP"
 ];
 
+const grade = function(actual, expected, executionRatio){
+    let marks = 0;
+    if(actual != expected){
+        return marks;
+    }
+    
+    marks += 60;
+    marks += 80/executionRatio;
+    return marks;
+}
+
 detector.captureChanges(machine, program);
 const changes = detector.getChanges();
 const modifier = new Modifier();
+const inputs = [3, 200];
 
-program = modifier.modify(program, changes, [3, 2]);
+program = modifier.modify(program, changes, inputs);
 
 machine.load(program.join("\n"));
 machine.execute();
 const numberOfLinesExecuted = machine.getTable().length;
 const answer = machine.getPrn()[0];
 
-const grader = new Grader();
-const marks = grader.grade(answer, 6, program.length, numberOfLinesExecuted);
+const linesAllowed = inputs.reduce((a, b) => a * b, 1);
+const executionRatio = Math.ceil(numberOfLinesExecuted / linesAllowed);
+const marks = grade(answer, 600, executionRatio);
 
 console.log(marks);

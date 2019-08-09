@@ -23,7 +23,8 @@ class Detector {
         this.changes.push({
             lineNo: step.CL,
             register: register,
-            value: step[register]
+            value: step[register],
+            instruction: step.INST
         });
         this.registers[register] = step[register];
     }
